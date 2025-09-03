@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard - SDG4 AI Tutor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Welcome Section -->
+        <div class="col-12 mb-4">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body">
+                    <h2 class="card-title">Welcome back, {{ user.username }}!</h2>
+                    <p class="card-text">You have <strong>{{ user.credits }}</strong> credits remaining</p>
+                    {% if user.credits < 5 %}
+                    <a href="{% url 'pricing' %}" class="btn btn-warning">
+                        <i class="fas fa-plus me-2"></i>Buy More Credits
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- AI Tutor Chat -->
+        <div class="col-lg-8 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-robot me-2"></i>AI Tutor Chat</h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <div id="chat-container" class="flex-grow-1 mb-3" style="min-height: 400px; max-height: 500px; overflow-y: auto;">
+                        <div class="text-center text-muted py-5">
+                            <i class="fas fa-comments fa-3x mb-3"></i>
+                            <p>Start a conversation with your AI tutor!</p>
+                        </div>
+                    </div>
+                    
+                    <form id="tutor-form" class="mt-auto">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" id="question-input" class="form-control" 
+                                   placeholder="Ask any educational question..." required>
+                            <button type="submit" class="btn btn-primary" id="ask-btn">
+                                <i class="fas fa-paper-plane"></i> Ask (1 credit)
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Quick Actions -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary" onclick="showExplainModal()">
+                            <i class="fas fa-lightbulb me-2"></i>Explain Concept (2 credits)
+                        </button>
+                        <button class="btn btn-outline-success" onclick="showQuizModal()">
+                            <i class="fas fa-clipboard-check me-2"></i>Generate Quiz (3 credits)
+                        </button>
+                        <a href="{% url 'pricing' %}" class="btn btn-outline-warning">
+                            <i class="fas fa-shopping-cart me-2"></i>Buy Credits
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Interactions -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Interactions</h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_interactions %}
+                        {% for interaction in recent_interactions %}
+                        <div class="interaction-item mb-3 pb-2 border-bottom">
+                            <small class="text-muted">{{ interaction.created_at|date:"m/d H:i" }}</small>
+                            <p class="mb-1 fw-bold">{{ interaction.prompt|truncatechars:50 }}</p>
+                            <small class="text-success">{{ interaction.credits_used }} credits used</small>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No interactions yet. Start chatting with the AI tutor!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals (same as Flask version) -->
+<div class="modal fade" id="explainModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Explain Concept</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="explain-form">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="topic" class="form-label">Topic</label>
+                        <input type="text" class="form-control" id="topic" required 
+                               placeholder="e.g., Photosynthesis, Algebra, World War II">
+                    </div>
+                    <div class="mb-3">
+                        <label for="level" class="form-label">Learning Level</label>
+                        <select class="form-select" id="level" required>
+                            <option value="elementary">Elementary</option>
+                            <option value="middle school">Middle School</option>
+                            <option value="high school" selected>High School</option>
+                            <option value="college">College</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="context" class="form-label">Additional Context (optional)</label>
+                        <textarea class="form-control" id="context" rows="2" 
+                                  placeholder="Any specific focus or background information..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-lightbulb me-2"></i>Explain (2 credits)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="quizModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Generate Quiz</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="quiz-form">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="quiz-topic" class="form-label">Quiz Topic</label>
+                        <input type="text" class="form-control" id="quiz-topic" required 
+                               placeholder="e.g., Solar System, Fractions, Grammar">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="difficulty" class="form-label">Difficulty</label>
+                            <select class="form-select" id="difficulty" required>
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="num-questions" class="form-label">Questions</label>
+                            <select class="form-select" id="num-questions" required>
+                                <option value="3">3 Questions</option>
+                                <option value="5" selected>5 Questions</option>
+                                <option value="10">10 Questions</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-clipboard-check me-2"></i>Generate (3 credits)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+

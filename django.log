@@ -1,0 +1,71 @@
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Forbidden: /api/health/
+Watching for file changes with StatReloader
+Forbidden: /api/health/
+Internal Server Error: /accounts/register/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\apps\accounts\views.py", line 41, in register_view
+    return render(request, 'registration/register.html', {'form': form})
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registration/register.html
+C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\sdg4_project\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\user\Desktop\PLP Projects\Python\django_sdg4_education_platform_20250901_204440\.venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /admin/

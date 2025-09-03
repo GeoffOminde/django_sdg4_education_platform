@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    AI-Powered Education for <span class="text-warning">Everyone</span>
+                </h1>
+                <p class="lead mb-4">
+                    Supporting UN SDG 4: Quality Education through intelligent tutoring, 
+                    personalized learning paths, and accessible educational resources.
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'register' %}" class="btn btn-warning btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Start Learning Free
+                    </a>
+                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
+                        Learn About SDG4
+                    </a>
+                    {% else %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-warning btn-lg">
+                        <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-illustration">
+                    <i class="fas fa-brain fa-10x text-warning opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold">Intelligent Learning Features</h2>
+                <p class="lead text-muted">Powered by advanced AI and designed for inclusive education</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-robot fa-3x text-primary"></i>
+                    </div>
+                    <h4>AI Tutoring</h4>
+                    <p class="text-muted">
+                        Get instant answers and explanations from our AI tutor. 
+                        Ask questions in natural language and receive personalized responses.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-lightbulb fa-3x text-warning"></i>
+                    </div>
+                    <h4>Concept Explanations</h4>
+                    <p class="text-muted">
+                        Request detailed explanations of complex topics with examples, 
+                        analogies, and common misconceptions to avoid.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100 p-4 text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-clipboard-check fa-3x text-success"></i>
+                    </div>
+                    <h4>Quiz Generation</h4>
+                    <p class="text-muted">
+                        Generate custom quizzes on any topic to test your knowledge 
+                        and reinforce learning with immediate feedback.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Demo Section -->
+{% if not user.is_authenticated %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-4">Try Our AI Tutor</h2>
+                <p class="lead mb-4">Experience intelligent tutoring - sign up for 10 free credits!</p>
+                
+                <div class="demo-chat-box bg-white p-4 rounded shadow-sm">
+                    <div class="chat-message mb-3">
+                        <strong>Student:</strong> "Can you explain photosynthesis in simple terms?"
+                    </div>
+                    <div class="chat-message ai-response">
+                        <strong>AI Tutor:</strong> "Photosynthesis is like a plant's kitchen! Plants use sunlight, water, and carbon dioxide to make their own food (glucose) and release oxygen as a bonus. Think of leaves as solar panels that capture sunlight energy..."
+                    </div>
+                </div>
+                
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg mt-3">
+                    Start Learning Now - Free!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+

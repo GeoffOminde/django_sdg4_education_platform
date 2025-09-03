@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pricing - SDG4 AI Tutor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Header -->
+    <div class="row text-center mb-5">
+        <div class="col-12">
+            <h1 class="display-4 fw-bold">Affordable Learning for All</h1>
+            <p class="lead">Choose a plan that fits your educational journey</p>
+        </div>
+    </div>
+    
+    <!-- Credit Packages -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Credit Packages</h2>
+            <p class="text-center text-muted mb-4">Pay as you learn - perfect for occasional users</p>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">50 Credits</h3>
+                    <h2 class="text-primary">$5.00</h2>
+                    <p class="text-muted">$0.100 per credit</p>
+                    
+                    <ul class="list-unstyled mt-4">
+                        <li><i class="fas fa-check text-success me-2"></i>50 AI interactions</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Never expires</li>
+                        <li><i class="fas fa-check text-success me-2"></i>All AI features</li>
+                    </ul>
+                    
+                    {% if user.is_authenticated %}
+                    <button class="btn btn-primary btn-lg w-100 mt-3" 
+                            onclick="purchaseCredits(50, 5.00)">
+                        Buy Now
+                    </button>
+                    {% else %}
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg w-100 mt-3">
+                        Sign Up to Buy
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-header bg-primary text-white text-center">
+                    <small>Most Popular</small>
+                </div>
+                <div class="card-body text-center">
+                    <h3 class="card-title">100 Credits</h3>
+                    <h2 class="text-primary">$9.00</h2>
+                    <p class="text-muted">$0.090 per credit</p>
+                    
+                    <ul class="list-unstyled mt-4">
+                        <li><i class="fas fa-check text-success me-2"></i>100 AI interactions</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Never expires</li>
+                        <li><i class="fas fa-check text-success me-2"></i>All AI features</li>
+                    </ul>
+                    
+                    {% if user.is_authenticated %}
+                    <button class="btn btn-primary btn-lg w-100 mt-3" 
+                            onclick="purchaseCredits(100, 9.00)">
+                        Buy Now
+                    </button>
+                    {% else %}
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg w-100 mt-3">
+                        Sign Up to Buy
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">500 Credits</h3>
+                    <h2 class="text-primary">$40.00</h2>
+                    <p class="text-muted">$0.080 per credit</p>
+                    
+                    <ul class="list-unstyled mt-4">
+                        <li><i class="fas fa-check text-success me-2"></i>500 AI interactions</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Never expires</li>
+                        <li><i class="fas fa-check text-success me-2"></i>All AI features</li>
+                    </ul>
+                    
+                    {% if user.is_authenticated %}
+                    <button class="btn btn-primary btn-lg w-100 mt-3" 
+                            onclick="purchaseCredits(500, 40.00)">
+                        Buy Now
+                    </button>
+                    {% else %}
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg w-100 mt-3">
+                        Sign Up to Buy
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Educational Institutions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h3>Educational Institutions</h3>
+                    <p class="lead">Special pricing for schools, universities, and educational organizations</p>
+                    <p>Contact us for custom plans with bulk credits, multi-user management, and integration support.</p>
+                    <a href="mailto:education@sdg4tutor.com" class="btn btn-success btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Contact for Institutional Pricing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Include the purchaseCredits function from dashboard.js
+</script>
+{% endblock %}
+
